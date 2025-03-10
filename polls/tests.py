@@ -153,11 +153,8 @@ class WarmandHotQuestionTest(TestCase):
         """
         time = timezone.now() + datetime.timedelta(days=30)
         q = Question.objects.create(question_text= 'test_question', pub_date=time)
-        q.choice_set.create(choice_text="test_choice", votes=20)
+        q.choice_set.create(choice_text="test_choice", votes=60)
         for choice in q.choice_set.all():
-            if choice.votes > 50:
-                return True
-            else:
-                return False
+           self.assertGreaterEqual(choice.votes >= 50)
 
 
