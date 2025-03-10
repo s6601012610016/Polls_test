@@ -122,3 +122,42 @@ class QuestionDetailViewTests(TestCase):
         url = reverse("polls:detail", args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
+
+class WarmandHotQuestionTest(TestCase):
+    def test_that_there_is_at_least_one_choice(self):
+        """
+        Test that every question have at least one choice to choose
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        q = Question.objects.create(question_text= 'test_question', pub_date=time)
+        q.choice_set.create(choice_text="test_choice", votes=0)
+        
+        self.assertIsNotNone(q.choice_set.all())
+
+    def test_that_this_is_warm_question(self):
+        """
+        votes for this question is 20 that's mean this should be warm question
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        q = Question.objects.create(question_text= 'test_question', pub_date=time)
+        q.choice_set.create(choice_text="test_choice", votes=20)
+        for choice in q.choice_set.all():
+            if choice.votes >= 10 and choice.votes < 50:
+                return True
+            else:
+                return False
+            
+    def test_that_this_is_warm_question(self):
+        """
+        votes for this question is 50 that's mean this should be hot question
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        q = Question.objects.create(question_text= 'test_question', pub_date=time)
+        q.choice_set.create(choice_text="test_choice", votes=20)
+        for choice in q.choice_set.all():
+            if choice.votes > 50:
+                return True
+            else:
+                return False
+
+
