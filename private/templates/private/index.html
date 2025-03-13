@@ -3,22 +3,6 @@
     {% for question in latest_question_list %}
     <li><a href="{% url 'private:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
-    <h1>WARM QUESTION</h1>
-        {% for question in latest_question_list %}
-            {% for choice in question.choice_set.all %}
-                {% if choice.votes >= 10 and choice.votes < 50 %}
-                    <li><a href="{% url 'private:detail' question.id %}">{{ question.question_text }}</a></li>
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-    <h1>HOT QUESTION</h1>
-        {% for question in latest_question_list %}
-            {% for choice in question.choice_set.all %}
-                {% if choice.votes > 50 %}
-                    <li><a href="{% url 'private:detail' question.id %}">{{ question.question_text }}</a></li>
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
     </ul>
 {% else %}
     <p>No private are available.</p>
