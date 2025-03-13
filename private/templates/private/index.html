@@ -3,6 +3,8 @@
     {% for question in latest_question_list %}
     <li><a href="{% url 'private:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
+    <div></div><div></div>
+    <a href="{% url 'polls:index'%}">Go to Public Polls</a>
     </ul>
 {% else %}
     <p>No private are available.</p>

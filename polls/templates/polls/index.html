@@ -19,6 +19,7 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
+    <a href="{% url 'private:index'%}">Go to Private Polls</a>
     </ul>
 {% else %}
     <p>No polls are available.</p>
