@@ -1,2 +1,28 @@
 #from polls.models import Choice, Question
 #from django.utils import timezone
+
+Django
+
+mkdir djangotutorial
+
+django-admin startproject mysite djangotutorial
+
+py manage.py startapp polls
+
+py manage.py migrate
+
+py manage.py migrate
+
+py manage.py sqlmigrate polls 0001
+
+python manage.py test
+
+git
+
+git init
+
+git status
+
+git add .
+
+git log
