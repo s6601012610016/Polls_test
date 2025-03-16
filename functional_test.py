@@ -24,7 +24,7 @@ class Speacial_Order(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_start_web(self):
+    def test_special_order(self):
         self.browser.get("http://127.0.0.1:8000/private/")
         t.sleep(2)
         '''
